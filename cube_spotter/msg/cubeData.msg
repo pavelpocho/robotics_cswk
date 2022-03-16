@@ -1,0 +1,4 @@
+string cube_colour
+float64 normalisedCoordinateX
+float64 normalisedCoordinateY
+float64 area
