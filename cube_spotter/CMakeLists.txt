@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   roscpp
   std_msgs
+  robotics_cswk_kin
   message_generation
 )
 
@@ -52,6 +53,8 @@ add_message_files(
   FILES
   cubeData.msg
   cubeArray.msg
+  cube_co.msg
+  Cube_co_Array.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -70,6 +73,7 @@ add_message_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
+  robotics_cswk_kin
   std_msgs
 )
 
@@ -105,7 +109,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES cube_spotter
-#  CATKIN_DEPENDS rospy std_msgs
+  CATKIN_DEPENDS rospy std_msgs robotics_cswk_kin message_runtime rospy roscpp
 #  DEPENDS system_lib
 )
 

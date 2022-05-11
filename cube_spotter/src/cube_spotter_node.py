@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-from __future__ import print_function
+#! /usr/bin/env python
 
 import roslib
 roslib.load_manifest('cube_spotter')
@@ -85,17 +84,17 @@ class cubeSpotter:
     # R = Val
 
     # Yellow - H=30
-    self.hsvYellowLow=(20.0000, 100.0000, 150.0000)
-    self.hsvYellowHigh=(30.0000, 255.0000, 255.0000)
+    self.hsvYellowLow=(20.0000, 110.0000, 50.0000)
+    self.hsvYellowHigh=(40.0000, 255.0000, 255.0000)
 
     # Blue
-    self.hsvBlueLow=(95.0000, 150.0000, 50.0000)
-    self.hsvBlueHigh=(110,255,255)
+    self.hsvBlueLow=(85.0000, 50.0000, 50.0000)
+    self.hsvBlueHigh=(125.0,255,255)
 
     # Red - wraps around 0, but the red blocks are mostly in the 0-10 range
-    self.hsvRedLow1=(0.0000, 100.0000, 100.0000)
-    self.hsvRedHigh1=(15,255,255)
-    self.hsvRedLow2=(177.0000, 100.0000, 100.0000)
+    self.hsvRedLow1=(0.0000, 80.0000, 20.0000)
+    self.hsvRedHigh1=(20.0,255,255)
+    self.hsvRedLow2=(160.0000, 80.0000, 20.0000)
     self.hsvRedHigh2=(180,255,255)
 
     # Use the openCV bridge
@@ -155,6 +154,7 @@ class cubeSpotter:
     canvas,cubeListYellow = mask2box(dilatedMaskYellow,(0,255,255),canvas,minArea)
 
 
+    # cv2.imshow("Detected Objects", cv_image)
     cv2.imshow("Detected Objects", cv_image)
     cv2.waitKey(3) # This redraws the window
 
