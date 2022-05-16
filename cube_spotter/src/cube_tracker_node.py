@@ -98,7 +98,7 @@ class cubeTracker:
 
     camera_x = response.position.x
     camera_y = response.position.y
-    camera_z = response.position.z
+    camera_z = response.position.z + 0.08
     camera_angle = response.angle.data
     
 
@@ -108,21 +108,22 @@ class cubeTracker:
         self.targetX=coX[i]
         self.targetY=coY[i]
 
-        angle_x = coX[i] - 0.5 * 70.0 / 180.0 * math.pi
-        angle_y = coY[i] - 0.5 * 50.0 / 180.0 * math.pi
+        if self.targetX < 0.2 or self.targetX > 0.8 or self.targetY < 0.2 or self.targetY > 0.8:
+            continue
+
+        angle_x = (coX[i] - 0.5) * 50.0 / 180.0 * math.pi
+        angle_y = (coY[i] - 0.5) * 60.0 / 180.0 * math.pi
 
         Distance = ((camera_z) / cos(pi / 2 - camera_angle - angle_y))
 
         Real_x = (tan(angle_x) * Distance)
         Real_y = (tan(pi / 2 - camera_angle - angle_y)*camera_z)
 
-        New_Real_x = (cos(self.jointPose[0]) * Real_y) + (sin(self.jointPose[0]) * Real_x)
-        New_Real_y = (cos(self.jointPose[0]) * Real_x) + (sin(self.jointPose[0]) * Real_y)
+        New_Real_x = (cos(-self.jointPose[0]) * Real_y) + (sin(-self.jointPose[0]) * Real_x)
+        New_Real_y = (cos(-self.jointPose[0]) * Real_x) + (sin(-self.jointPose[0]) * Real_y)
 
         red_x_co = New_Real_x + camera_x
         red_y_co = New_Real_y - camera_y
-
-        print("Cube" + cubeColors[i])
 
         c.x_co.data = red_x_co
         c.y_co.data = red_y_co

@@ -88,7 +88,7 @@ class cubeSpotter:
     self.hsvYellowHigh=(40.0000, 255.0000, 255.0000)
 
     # Blue
-    self.hsvBlueLow=(85.0000, 50.0000, 50.0000)
+    self.hsvBlueLow=(85.0000, 50.0000, 150.0000)
     self.hsvBlueHigh=(125.0,255,255)
 
     # Red - wraps around 0, but the red blocks are mostly in the 0-10 range
