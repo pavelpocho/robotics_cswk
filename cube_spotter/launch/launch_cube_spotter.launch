@@ -1,0 +1,8 @@
+<launch>
+    <node
+        pkg="cube_spotter"
+        type="cube_spotter_node.py"
+        name="cube_spotter"
+        output="screen"
+    />
+</launch>

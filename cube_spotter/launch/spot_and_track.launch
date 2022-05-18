@@ -1,0 +1,11 @@
+<launch>
+
+    <include file="$(find cube_spotter)/launch/launch_cube_spotter.launch" />
+
+    <node
+        pkg="cube_spotter"
+        type="cube_tracker_node.py"
+        name="cube_tracker"
+        output="screen"
+    />
+</launch>

@@ -98,7 +98,7 @@ class cubeTracker:
 
     camera_x = response.position.x
     camera_y = response.position.y
-    camera_z = response.position.z
+    camera_z = response.position.z + 0.08
     camera_angle = response.angle.data
     
 
@@ -108,26 +108,27 @@ class cubeTracker:
         self.targetX=coX[i]
         self.targetY=coY[i]
 
-        angle_x = coX[i] - 0.5 * 70.0 / 180.0 * math.pi
-        angle_y = coY[i] - 0.5 * 50.0 / 180.0 * math.pi
+        if 0.2 < self.targetX < 0.8 and 0.2 < self.targetY < 0.8:
+          angle_x = (coX[i] - 0.5) * 52.4 / 180.0 * math.pi
+          angle_y = (coY[i] - 0.5) * 41.4 / 180.0 * math.pi
 
-        Distance = ((camera_z) / cos(pi / 2 - camera_angle - angle_y))
+          Distance = ((camera_z) / cos(pi / 2 - camera_angle - angle_y))
 
-        Real_x = (tan(angle_x) * Distance)
-        Real_y = (tan(pi / 2 - camera_angle - angle_y)*camera_z)
+          Real_x = (tan(angle_x) * Distance)
+          Real_y = (tan(pi / 2 - camera_angle - angle_y)*camera_z)
 
-        New_Real_x = (cos(self.jointPose[0]) * Real_y) + (sin(self.jointPose[0]) * Real_x)
-        New_Real_y = (cos(self.jointPose[0]) * Real_x) + (sin(self.jointPose[0]) * Real_y)
+          New_Real_x = (cos(-self.jointPose[0]) * Real_y) + (sin(-self.jointPose[0]) * Real_x)
+          New_Real_y = (cos(-self.jointPose[0]) * Real_x) + (sin(-self.jointPose[0]) * Real_y)
 
-        red_x_co = New_Real_x + camera_x
-        red_y_co = New_Real_y - camera_y
+          red_x_co = New_Real_x + camera_x
+          red_y_co = New_Real_y - camera_y
 
-        print("Cube" + cubeColors[i])
+          print("Cube" + cubeColors[i])
 
-        c.x_co.data = red_x_co
-        c.y_co.data = red_y_co
-        c.CubeColour.data = cubeColors[i]
-        Cube_Array_coridinates.Position.append(c)
+          c.x_co.data = red_x_co
+          c.y_co.data = red_y_co
+          c.CubeColour.data = cubeColors[i]
+          Cube_Array_coridinates.Position.append(c)
 
     else: # If you dont find a target, report the centre of the image to keep the camera still
         self.targetX=0.5
