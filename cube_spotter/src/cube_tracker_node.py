@@ -123,8 +123,6 @@ class cubeTracker:
           red_x_co = New_Real_x + camera_x
           red_y_co = New_Real_y - camera_y
 
-          print("Cube" + cubeColors[i])
-
           c.x_co.data = red_x_co
           c.y_co.data = red_y_co
           c.CubeColour.data = cubeColors[i]
